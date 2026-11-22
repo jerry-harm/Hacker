@@ -1,3 +1,15 @@
+<% if (theme.pcomment && theme.pcomment.enable && page.abbrlink) { %>
+  <%
+    var _base = (theme.pcomment.base || '/comment').replace(/\/$/, '');
+    var _key  = date(page.date, 'YYYY-MM-DD') + '-' + page.abbrlink + '-';
+    var _src  = _base + '/post/' + _key + '/' + encodeURIComponent(page.title || '');
+  %>
+  <section id="comment" class="comment">
+    <iframe width="100%" height="<%= theme.pcomment.height || 600 %>"
+            style="border-width:0;border-radius:10px"
+            src="<%= _src %>" title="comments" loading="lazy"></iframe>
+  </section>
+<% } %>
 <% if (theme.gitalk){ %>
 	<section id="comment" class="comment">
 		<div id="gitalk-container"></div>
